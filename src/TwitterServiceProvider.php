@@ -9,12 +9,15 @@ class TwitterServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'twitter');
+        $this->publishes([
+            __DIR__ . '/config/twitter.php' => config_path('twitter-search.php')
+        ], 'twitter-search');
 
 
     }
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/config/twitter.php','twitter');
+        $this->mergeConfigFrom(__DIR__ . '/config/twitter.php', 'twitter');
     }
 }

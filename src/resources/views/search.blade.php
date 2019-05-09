@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
@@ -14,32 +15,31 @@
 <body>
 
 <div style="width: 500px; margin: 0 auto; margin-top: 90px;">
-    @if(session('status'))
+    @if(session('success'))
         <div class="alert alert-success">
-            {{ session('status') }}
+            {{ session('success') }}
         </div>
     @endif
 
-    <h3>Contact Us</h3>
+    @if($errors->any())
+        @foreach($errors->all() as $error)
+            <div class="alert alert-danger">
+                {{ $error }}
+            </div>
+        @endforeach
+    @endif
+
+    <h3>Search Tweets</h3>
 
     <form action="{{route('search')}}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="exampleFormControlInput1">Your name</label>
-            <input type="text" class="form-control" name="name" id="exampleFormControlInput" placeholder="John Doe">
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlInput1">Email address</label>
-            <input type="email" class="form-control" name="email" id="exampleFormControlInput1"
-                   placeholder="name@example.com">
+            <label for="exampleFormControlInput1">Keyword</label>
+            <input type="text" class="form-control" name="keyword" id="exampleFormControlInput" placeholder="#food">
         </div>
 
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Enter Your Message</label>
-            <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Search</button>
     </form>
 </div>
 </body>

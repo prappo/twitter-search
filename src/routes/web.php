@@ -1,10 +1,8 @@
 <?php
 
 Route::group(['namespace' => 'prappo\twitter\Http\Controllers', 'middleware' => ['web']], function () {
-    Route::get('/twitter', 'SearchController@index');
+    Route::get('/twitter/search', 'SearchController@index');
 
-    Route::post('/twitter', function () {
-
-    })->name('search');
+    Route::post('/twitter/search', 'SearchController@search')->name('search');
 });
 
