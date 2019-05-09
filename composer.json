@@ -14,5 +14,12 @@
     "psr-4": {
       "prappo\\twitter\\": "src/"
     }
+  },
+  "extra" : {
+    "laravel":{
+      "providers":[
+        "prappo\\twitter\\src\\"
+      ]
+    }
   }
 }
